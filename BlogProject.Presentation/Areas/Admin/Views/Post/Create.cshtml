@@ -1,0 +1,66 @@
+﻿@model CreatePostDTO
+
+<div class="col-lg-8 offset-2">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create Post</h3>
+        </div>
+
+        <form asp-action="Create" asp-controller="Post" method="post" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Title">@Html.DisplayNameFor(x=>x.Title)</label>
+                    <input asp-for="Title" class="form-control">
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="Content">@Html.DisplayNameFor(x=>x.Content)</label>
+                    <textarea asp-for="Content" class="form-control" rows="3" placeholder="Enter Content"></textarea>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="GenreId" class="form-label mt-4">@Html.DisplayNameFor(x=>x.GenreId)</label>
+                    <select asp-for="GenreId" class="custom-select" asp-items="@ViewBag.Genres">
+                        <option>Please select a Genre</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="AuthorId" class="form-label mt-4">@Html.DisplayNameFor(x=>x.AuthorId)</label>
+                    <select asp-for="AuthorId" class="custom-select" asp-items="@ViewBag.Authors">
+                        <option>Please select a Genre</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="UploadPath">Select Image</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" asp-for="UploadPath">
+                            <label class="custom-file-label" for="exampleInputFile">Choose image</label>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="card-footer">
+                <a asp-controller="post" asp-action="index" class="btn btn-info m-2">Back To The List</a>
+                <button type="submit" class="btn btn-primary">Create Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_CustomFileInputPartial"></partial>
+}

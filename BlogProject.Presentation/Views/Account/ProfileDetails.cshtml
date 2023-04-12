@@ -1,0 +1,23 @@
+﻿@model UpdateProfileDTO
+@{
+    ViewData["Title"] = "Profile Details";
+}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">@Model.UserName</h3>
+        </div>
+        <div class="card-body">
+            Username: @Model.UserName
+            <br />
+            Email: @Model.Email
+            <br />
+            Status: @Model.Status
+        </div>
+        <div class="card-footer">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-sm btn-primary">Back to List</a>
+            <a href="/Account/Edit?userName=@User.Identity.Name" class="btn btn-sm btn-primary">Edit</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model List<AuthorVM>
+@{
+    ViewData["Title"] = "Author List";
+}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">List of Post</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var author in Model)
+                    {
+                        <tr>
+                            <td>@author.FullName</td>
+                            <td>
+                                <a asp-action="Update" asp-route-id="@author.Id" class="btn btn-sm btn-warning">Update</a>
+                                <a asp-action="Delete" asp-route-id="@author.Id" class="btn btn-sm btn-danger">Delete</a>
+                                <a asp-action="Details" asp-route-id="@author.Id" class="btn btn-sm btn-info">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Create" class="btn btn-block btn-dark">Create</a>
+        </div>
+    </div>
+</div>
+

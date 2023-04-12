@@ -1,0 +1,55 @@
+﻿@model List<PostVM>
+@{
+    ViewData["Title"] = "Post List";
+}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">List of Post</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>PostImage</th>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Author</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var post in Model)
+                    {
+
+                        <tr>
+                            <td><img class="d-block user-select-none" width="200" height="300" src="~@post.ImagePath"></td>
+                            <td><a href="/Home/Post/@post.Id">@post.Title</a></td>
+                            <td>@post.GenreName</td>
+                            <td>@post.AuthorFullName</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@post.Id" class="btn btn-sm btn-info">Details</a>
+                                <a asp-action="Update" asp-route-id="@post.Id" class="btn btn-sm btn-warning">Update</a>
+                                <a asp-action="Delete" asp-route-id="@post.Id" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>PostImage</th>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Author</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Create" class="btn btn-block btn-dark">Create</a>
+        </div>
+    </div>
+</div>
+

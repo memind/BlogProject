@@ -1,0 +1,26 @@
+﻿@model List<PostVM>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="container mt-2">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-8">
+            <div class="card card-widget mt-3">
+                <div class="card-body">
+                    <img class="img-fluid pad" src="@item.ImagePath" alt="Photo">
+                    <br />
+                    @*Title'i linke cevir*@
+                    <a asp-action="Post" asp-route-id="@item.Id"><h4>@item.Title</h4></a>
+                    <p class="card-text">@item.Content</p>
+                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
+                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

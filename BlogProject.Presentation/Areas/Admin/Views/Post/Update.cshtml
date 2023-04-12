@@ -1,0 +1,83 @@
+﻿@model UpdatePostDTO
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Update Post</h3>
+        </div>
+        <form asp-area="Admin" asp-controller="Post" asp-action="Update" method="post" enctype="multipart/form-data">
+            <div class="card-body">
+
+                <div class="form-group">
+
+                    @if (!String.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <img src="@Model.ImagePath" class="d-block user-select-none" width="200" height="300"/>
+
+                    }
+                    else
+                    {
+                        <img src="/images/NoImage.jpg" class="form-control" width="200" height="300"/>
+
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="UploadPath">Select Image</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" asp-for="UploadPath">
+                            <label class="custom-file-label" for="exampleInputFile">Choose image</label>
+                        </div>
+                    </div>
+                </div>
+
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ImagePath" type="hidden" />
+
+                <div class="form-group">
+                    <label asp-for="Title" class="form-control">@Html.DisplayNameFor(x=>x.Title)</label>
+                    <input class="form-control" placeholder="Title" asp-for="Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Content" class="form-control"></label>
+                    <textarea asp-for="Content" class="form-control" placeholder=" Enter Contet">@Html.DisplayNameFor(x=>x.Content)</textarea>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="GenreId" class="form-control">@Html.DisplayNameFor(x=>x.GenreId)</label>
+                    <select asp-for="GenreId" class="form-control" asp-items="@ViewBag.Genres">
+                        <option>Plases Select Genre </option>
+                    </select>
+                    <span asp-validation-for="GenreId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AuthorId" class="form-control">@Html.DisplayNameFor(x=>x.AuthorId)</label>
+                    <select asp-for="AuthorId" class="form-control" asp-items="@ViewBag.Authors">
+                        <option>Plases Select Author </option>
+                    </select>
+                    <span asp-validation-for="AuthorId" class="text-danger"></span>
+                </div>
+
+
+                <div class="card-footer">
+                    <a asp-action="Index" class="btn btn-primary btn-sm float-end mr-2">Back to Post List</a>
+                    <input type="submit" class="btn btn-success btn-sm float-end mr-2" value="Update Post" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial" />
+
+@section Scripts{
+    <partial name="_CustomFileInputPartial"></partial>
+}
